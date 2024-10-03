@@ -21,10 +21,10 @@ Route::middleware(['auth', 'RoleMiddleware:admin'])->group(function () {
     Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
     Route::post('/orders/{order}/approve', [OrderController::class, 'approveOrder'])->name('orders.approve');
 });
-Route::get('/atasan/dashboard', [AtasanController::class, 'index'])->name('atasan.dashboard')->middleware('auth');
-Route::post('/atasan/approve/{id}', [AtasanController::class, 'approveOrder'])->name('atasan.approve')->middleware('auth');
+
 Route::middleware(['auth', 'RoleMiddleware:atasan'])->group(function () {
-    
+    Route::get('/atasan/dashboard', [AtasanController::class, 'index'])->name('atasan.dashboard');
+Route::post('/atasan/approve/{id}', [AtasanController::class, 'approveOrder'])->name('atasan.approve');
 });
 
 Route::middleware('auth')->group(function () {
